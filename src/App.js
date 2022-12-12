@@ -9,6 +9,9 @@ import OrderSummary from "./components/order-summary";
 import Products from "./components/products";
 import { FeaturedProducts } from "./components/featured-products";
 import { New } from "./components/new";
+import { Users } from "./components/users";
+import { UserDetails } from "./components/user-details";
+import { Admin } from "./components/admin";
 
 function App() {
   return (
@@ -22,6 +25,10 @@ function App() {
           <Route index element={<FeaturedProducts />} />
           <Route path='featured' element={<FeaturedProducts />} />
           <Route path='new' element={<New />} />
+        </Route>
+        <Route path='users' element={<Users />}>
+          <Route path=':userId' element={<UserDetails />} />
+          <Route path='admin' element={<Admin />} />
         </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
