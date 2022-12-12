@@ -1,0 +1,13 @@
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  font-size: 22px;
+  padding: 16px 32px;
+  background: rgb(96, 239, 217);
+}
+
+nav a.active {
+  text-decoration: none;
+  font-weight: bold;
+}
