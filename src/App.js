@@ -12,26 +12,41 @@ import { New } from "./components/new";
 import { Users } from "./components/users";
 import { UserDetails } from "./components/user-details";
 import { Admin } from "./components/admin";
+import { Profile } from "./components/profile";
+import { AuthProvider } from "./components/auth";
+import { Login } from "./components/login";
+import { RequireAuth } from "./components/requireAuth";
 
 function App() {
   return (
     <div className='App'>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='about' element={<About />} />
-        <Route path='order-summary' element={<OrderSummary />} />
-        <Route path='products' element={<Products />}>
-          <Route index element={<FeaturedProducts />} />
-          <Route path='featured' element={<FeaturedProducts />} />
-          <Route path='new' element={<New />} />
-        </Route>
-        <Route path='users' element={<Users />}>
-          <Route path=':userId' element={<UserDetails />} />
-          <Route path='admin' element={<Admin />} />
-        </Route>
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <AuthProvider>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='about' element={<About />} />
+          <Route path='order-summary' element={<OrderSummary />} />
+          <Route path='products' element={<Products />}>
+            <Route index element={<FeaturedProducts />} />
+            <Route path='featured' element={<FeaturedProducts />} />
+            <Route path='new' element={<New />} />
+          </Route>
+          <Route path='users' element={<Users />}>
+            <Route path=':userId' element={<UserDetails />} />
+            <Route path='admin' element={<Admin />} />
+          </Route>
+          <Route
+            path='profile'
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
+          <Route path='/login' element={<Login />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </AuthProvider>
     </div>
   );
 }
